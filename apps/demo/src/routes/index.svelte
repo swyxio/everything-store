@@ -1,9 +1,12 @@
-<script context="module" lang="ts">
+<script context="module" lang="ts">	
 	export const prerender = true;
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import {mediaQueryStore, breakPointStore} from 'everything-store';
+
+	const w600 = mediaQueryStore('(min-width:600px)');
+	const bps = breakPointStore()
 </script>
 
 <svelte:head>
@@ -19,14 +22,10 @@
 			</picture>
 		</div>
 
-		to your new<br />SvelteKit app
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
+	<h1>Breakpoint: {$bps}</h1>
+	<!-- <h1>Width >600px: {$w600}</h1> -->
 </section>
 
 <style>
