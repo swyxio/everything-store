@@ -1,11 +1,17 @@
 {
   "name": "everything-store",
-  "version": "0.0.1",
-  "main": "./index.tsx",
-  "types": "./index.tsx",
+  "version": "0.0.2",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "issues": "https://github.com/sw-yx/everything-store",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sw-yx/everything-store.git"
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "files": [
     "dist"
@@ -17,6 +23,8 @@
     "typescript": "^4.5.3"
   },
   "description": "buncha useful svelte shit",
-  "keywords": ["svelte"],
+  "keywords": [
+    "svelte"
+  ],
   "author": "sw-yx"
 }
