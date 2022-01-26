@@ -1,0 +1,22 @@
+{
+  "name": "everything-store",
+  "version": "0.0.1",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "svelte": "^3.44",
+    "tsconfig": "*",
+    "config": "*",
+    "typescript": "^4.5.3"
+  },
+  "description": "buncha useful svelte shit",
+  "keywords": ["svelte"],
+  "author": "sw-yx"
+}
