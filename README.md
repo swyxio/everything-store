@@ -15,6 +15,9 @@ const bps = breakPointStore()
 <h1>Breakpoint: {$bps}</h1>
 ```
 
+![resize](https://user-images.githubusercontent.com/6764957/151087569-1dd7e59b-7326-44ae-bd61-fb22a25df54d.gif)
+
+
 ## Generic Media Query Store
 
 Subscribe for `true/false` whenever a media query changes.
