@@ -24,12 +24,15 @@ Subscribe for `true/false` whenever a media query changes.
 
 ```html
 <script>
-	import {mediaQueryStore} from 'everything-store';
+import {mediaQueryStore} from 'everything-store';
 
-	const isLandscape = mediaQueryStore('(orientation: landscape)');
+const isLandscape = mediaQueryStore('(orientation: landscape)');
+const isDarkMode = mediaQueryStore('(prefers-color-scheme: dark)');
+const lessMotion = mediaQueryStore('(prefers-reduced-motion)');
 </script>
 
 <h1>isLandscape: {$isLandscape}</h1>
+<!-- etc -->
 ```
 
 Thanks to @dimfeld for impl: https://svelte.dev/repl/0d5e9844f81b423386f405da3cb69087?version=3.46.2
