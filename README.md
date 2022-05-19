@@ -36,3 +36,18 @@ const lessMotion = mediaQueryStore('(prefers-reduced-motion)');
 ```
 
 Thanks to @dimfeld for impl: https://svelte.dev/repl/0d5e9844f81b423386f405da3cb69087?version=3.46.2
+
+
+## Other Great stores
+
+- [ ]  Kev’s list of custom stores
+    - [ ]  [Toggle Store](https://svelte.dev/repl/a3cb054398a94698a4cfe4c44f33b923?version=3.48.0)
+    - [ ]  [Fetch Store](https://svelte.dev/repl/a74f1ed8e3eb4aec82cb743e13443ee4?version=3.48.0)
+    - [ ]  [LocalStorage Store](https://svelte.dev/repl/e6c0e3db7d064d43a7e4559b2862e1f7?version=3.48.0)
+        - [ ]  [Jacob Babich NPM package is neat](https://github.com/babichjacob/svelte-localstorage)!
+    - [ ]  [Notification Toast Store](https://svelte.dev/repl/e166b01bc46149a49895c1622d26ce7e?version=3.48.0)
+        - [ ]  Shout out to Antony and Li Hau!
+    - [ ]  Form Validation Store
+    - [ ]  [Periodic Fetch Store](https://svelte.dev/repl/b8fa406464d6434fba97902ac78b5e2b?version=3.48.0)
+- [ ]  Brittney’s list of Stores
+    - [ ]  [https://www.youtube.com/watch?v=a65aPLz18IM](https://www.youtube.com/watch?v=a65aPLz18IM)
