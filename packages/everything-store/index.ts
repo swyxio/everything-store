@@ -68,7 +68,7 @@ let inMemoryDarkModeStore = null as {
 } | null
 export function darkModeStore(localStorageKey = 'darkModeStore') {
   if (typeof window === 'undefined') {
-    return writable('system');
+    return writable('light');
   }
 
   if (inMemoryDarkModeStore) {
@@ -76,7 +76,7 @@ export function darkModeStore(localStorageKey = 'darkModeStore') {
   }
 
 
-	let darkMode = writable('system');
+	let darkMode = writable('light');
 	if (typeof localStorage !== 'undefined') {
 		if (
 			localStorage[localStorageKey] === 'dark' ||
