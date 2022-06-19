@@ -7,6 +7,8 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "turbo run build",
+    "prepublishOnly": "cp README.md packages/everything-store/README.md",
     "build": "turbo run build",
     "start": "turbo run dev --parallel",
     "lint": "turbo run lint",
