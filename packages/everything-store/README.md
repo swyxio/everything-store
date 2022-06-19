@@ -67,7 +67,7 @@ It also offers a custom method to `toggleDark()`. May take PRs to expand to supp
 <script>
 import {darkModeStore} from 'everything-store';
 
-const darkModeState = darkModeStore('customDarkModeLocalStorageKey')
+const darkModeState = darkModeStore()
 </script>
 <p>darkModeState: {$darkModeState}</p>
 <p>toggle darkModeState: 
