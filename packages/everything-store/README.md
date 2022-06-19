@@ -100,4 +100,10 @@ const darkModeState = darkModeStore('customDarkModeLocalStorageKey')
 
 When updating code `yarn build` the code first, then `yarn start`.
 
-When publishing
+When publishing:
+
+1. `yarn build` to make sure the latest code is built
+1. `cd packages/everything-store`
+1. (if changed) copy over this README to the [npm readme](https://www.npmjs.com/package/everything-store). in future this could just be part of the build step.
+1. `npm version patch` to bump versions
+1. `npm publish` to publish
