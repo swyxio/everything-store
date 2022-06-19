@@ -59,6 +59,7 @@ This store reads, in order:
 1. your previous dark mode setting from localStorage (using a customizable key that defaults to `darkModeStore`)
 2. dark mode preference from `prefers-color-scheme: dark`
 
+and updates your `<html>` document with a `dark` class if warranted
 and saves any changes to your `darkModeStore` localStorage key. 
 
 It also offers a custom method to `toggleDark()`. May take PRs to expand to support "system" and "custom" modes.
