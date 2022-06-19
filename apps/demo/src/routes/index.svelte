@@ -3,10 +3,13 @@
 </script>
 
 <script lang="ts">
-	import {mediaQueryStore, breakPointStore} from 'everything-store';
+	import {mediaQueryStore, breakPointStore, darkModeStore} from 'everything-store';
 
-	const w600 = mediaQueryStore('(min-width:600px)');
+	const isLandscape = mediaQueryStore('(orientation: landscape)');
+	const isDarkMode = mediaQueryStore('(prefers-color-scheme: dark)');
+	const lessMotion = mediaQueryStore('(prefers-reduced-motion)');
 	const bps = breakPointStore()
+	const darkModeState = darkModeStore('customDarkModeLocalStorageKey')
 </script>
 
 <svelte:head>
@@ -16,15 +19,17 @@
 <section>
 	<h1>
 		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
+			Welcome to the EVERYTHING STORE!
 		</div>
 
 	</h1>
 
-	<h1>Breakpoint: {$bps}</h1>
+	<p>breakPointStore: {$bps}</p>
+	<p>isLandscape: {$isLandscape}</p>
+	<p>isDarkMode: {$isDarkMode}</p>
+	<p>lessMotion: {$lessMotion}</p>
+	<p>darkModeState: {$darkModeState}</p>
+	<p>toggle darkModeState: <button on:click={() => darkModeState.toggleDark()}>toggle darkmodestate</button></p>
 	<!-- <h1>Width >600px: {$w600}</h1> -->
 </section>
 
