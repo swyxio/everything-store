@@ -110,7 +110,7 @@ export function darkModeStore(localStorageKey = 'darkModeStore') {
           document.documentElement.classList.remove('dark');
           localStorage[localStorageKey] = 'light';
           return 'light'
-        } else if (current === 'light') {
+        } else {
           document.documentElement.classList.add('dark');
           localStorage[localStorageKey] = 'dark';
           return 'dark'
