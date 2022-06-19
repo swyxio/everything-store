@@ -11,7 +11,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "prepare": "cd ../../ && npm run build",
+    "prepublishOnly": "cp ../../README.md README.md"
   },
   "files": [
     "dist"
