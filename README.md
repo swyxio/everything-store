@@ -2,9 +2,24 @@
 
 a nice utils library of stores for the discerning Svelte developer.
 
+- Breakpoint Store
+- Generic Media Query
+- Dark Mode store
+
+All stores are SSR friendly for SvelteKit.
+
 ## Breakpoint Store
 
-Subscribe for Tailwind breakpoints. No customization for now, copy out the code if you must
+Subscribe for Tailwind breakpoints: 
+
+- `xs`: `window.matchMedia('(max-width: 639px)')`
+- `sm`: `window.matchMedia('(min-width: 640px)')`
+- `md`: `window.matchMedia('(min-width: 768px)')`
+- `lg`: `window.matchMedia('(min-width: 1024px)')`
+- `xl`: `window.matchMedia('(min-width: 1280px)')`
+- `xxl`: `window.matchMedia('(min-width: 1536px)')`
+
+No customization for now, copy out the code if you must.
 
 ```html
 <script>
@@ -37,6 +52,30 @@ const lessMotion = mediaQueryStore('(prefers-reduced-motion)');
 
 Thanks to @dimfeld for impl: https://svelte.dev/repl/0d5e9844f81b423386f405da3cb69087?version=3.46.2
 
+## Dark Mode Custom Store
+
+This store reads, in order:
+
+1. your previous dark mode setting from localStorage (using a customizable key that defaults to `darkModeStore`)
+2. dark mode preference from `prefers-color-scheme: dark`
+
+and saves any changes to your `darkModeStore` localStorage key. 
+
+It also offers a custom method to `toggleDark()`. May take PRs to expand to support "system" and "custom" modes.
+
+```svelte
+<script>
+import {darkModeStore} from 'everything-store';
+
+const darkModeState = darkModeStore('customDarkModeLocalStorageKey')
+</script>
+<p>darkModeState: {$darkModeState}</p>
+<p>toggle darkModeState: 
+    <button on:click={() => darkModeState.toggleDark()}>
+        toggle darkmodestate
+    </button>
+</p>
+```
 
 ## Other Great stores
 
@@ -51,3 +90,14 @@ Thanks to @dimfeld for impl: https://svelte.dev/repl/0d5e9844f81b423386f405da3cb
     - [ ]  [Periodic Fetch Store](https://svelte.dev/repl/b8fa406464d6434fba97902ac78b5e2b?version=3.48.0)
 - [ ]  Brittney’s list of Stores
     - [ ]  [https://www.youtube.com/watch?v=a65aPLz18IM](https://www.youtube.com/watch?v=a65aPLz18IM)
+
+
+## Contributing
+
+1. `git clone` this repo
+2. then `yarn` to install packages
+3. `yarn start` -> should open demo at `localhost:3000`
+
+When updating code `yarn build` the code first, then `yarn start`.
+
+When publishing

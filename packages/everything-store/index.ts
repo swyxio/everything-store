@@ -1,4 +1,4 @@
-import { writable, readable, Readable } from 'svelte/store';
+import { writable, readable, Readable, Subscriber, Unsubscriber } from 'svelte/store';
 let stores = new Map<string, Readable<boolean>>();
 
 const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl']
@@ -59,5 +59,63 @@ export function mediaQueryStore(query: string, defaultForSsr = false) {
   });
 
   stores.set(query, store);
+  return store;
+}
+
+let inMemoryDarkModeStore = null as {
+  subscribe: (this: void, run: Subscriber<string>) => Unsubscriber;
+  toggleDark():void
+} | null
+export function darkModeStore(localStorageKey = 'darkModeStore') {
+  if (typeof window === 'undefined') {
+    return writable('system');
+  }
+
+  if (inMemoryDarkModeStore) {
+    return inMemoryDarkModeStore;
+  }
+
+
+	let darkMode = writable('system');
+	if (typeof localStorage !== 'undefined') {
+		if (
+			localStorage[localStorageKey] === 'dark' ||
+			(!(localStorageKey in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			darkMode.set('dark');
+		} else if (
+			localStorage[localStorageKey] === 'light' ||
+			(!(localStorageKey in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)
+		) {
+      darkMode.set('light'); // maybe not needed, doublecheck this
+    }
+	}
+
+  // // TODO: add a listener to the dark mode media query in edge case that people change preferences DURING THE APP LIFETIME 
+  // // very edge case, cant be bothrered
+  // let listener = window.matchMedia('(prefers-color-scheme: dark)');
+  // let mediaStore = readable(darkMode, (set) => {
+  //   let updater = (value: MediaQueryListEvent) => set(value.matches);
+  //   listener.addEventListener('change', updater);
+  //   return () => listener.removeEventListener('change', updater);
+  // });
+  let store = {
+    subscribe: darkMode.subscribe,
+    toggleDark() {
+      darkMode.update( current => {
+        if (current === 'dark') {
+          document.documentElement.classList.remove('dark');
+          localStorage[localStorageKey] = 'light';
+          return 'light'
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage[localStorageKey] = 'dark';
+          return 'dark'
+        }
+      })
+    }
+  }
+
+  inMemoryDarkModeStore = store
   return store;
 }
