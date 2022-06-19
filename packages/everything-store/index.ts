@@ -66,9 +66,10 @@ let inMemoryDarkModeStore = null as {
   subscribe: (this: void, run: Subscriber<string>) => Unsubscriber;
   toggleDark():void
 } | null
+export type AllowedModes = 'light' | 'dark' // in future may support system but skipping that for now
 export function darkModeStore(localStorageKey = 'darkModeStore') {
   if (typeof window === 'undefined') {
-    return writable('light');
+    return writable<AllowedModes>('light');
   }
 
   if (inMemoryDarkModeStore) {
@@ -76,18 +77,20 @@ export function darkModeStore(localStorageKey = 'darkModeStore') {
   }
 
 
-	let darkMode = writable('light');
+	let darkMode = writable<AllowedModes>('light');
 	if (typeof localStorage !== 'undefined') {
 		if (
 			localStorage[localStorageKey] === 'dark' ||
 			(!(localStorageKey in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 		) {
 			darkMode.set('dark');
+      document.documentElement.classList.add('dark');
 		} else if (
 			localStorage[localStorageKey] === 'light' ||
 			(!(localStorageKey in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)
 		) {
       darkMode.set('light'); // maybe not needed, doublecheck this
+      document.documentElement.classList.remove('dark');
     }
 	}
 
@@ -102,12 +105,12 @@ export function darkModeStore(localStorageKey = 'darkModeStore') {
   let store = {
     subscribe: darkMode.subscribe,
     toggleDark() {
-      darkMode.update( current => {
+      darkMode.update(current => {
         if (current === 'dark') {
           document.documentElement.classList.remove('dark');
           localStorage[localStorageKey] = 'light';
           return 'light'
-        } else {
+        } else if (current === 'light') {
           document.documentElement.classList.add('dark');
           localStorage[localStorageKey] = 'dark';
           return 'dark'
