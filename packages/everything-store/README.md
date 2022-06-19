@@ -95,15 +95,13 @@ const darkModeState = darkModeStore()
 ## Contributing
 
 1. `git clone` this repo
-2. then `yarn` to install packages
+2. then `yarn` to install packages (also uses `prepare` script to run a build)
 3. `yarn start` -> should open demo at `localhost:3000`
 
 When updating code `yarn build` the code first, then `yarn start`.
 
 When publishing:
 
-1. `yarn build` to make sure the latest code is built
 1. `cd packages/everything-store`
-1. (if changed) copy over this README to the [npm readme](https://www.npmjs.com/package/everything-store). in future this could just be part of the build step.
 1. `npm version patch` to bump versions
-1. `npm publish` to publish
+1. `npm publish` to publish (also uses `prepare` script to run a build and `prepublishOnly` to copy the readme)
